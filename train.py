@@ -32,12 +32,16 @@ features_new = []
 label_new = []
 for train_ele in training_data_list:
     features.append({'sum':sum([x['followers'] for x in \
-                                    train_ele['topics']])})
+                                    train_ele['topics']]), \
+                         'anonymous':1 if train_ele['anonymous'] == \
+                         True else 0})
     label.append({'__ans__':1 if train_ele['__ans__'] == True else 0})
 
 for test_ele, test_out in zip(test_data_list, test_out_list):
     features_new.append({'sum':sum(x['followers'] for x in \
-                                       test_ele['topics'])})
+                                       test_ele['topics']), \
+                         'anonymous':1 if test_ele['anonymous'] == \
+                         True else 0})
     label_new.append({'__ans__':1 if test_out['__ans__'] == \
                           True else 0})
 
